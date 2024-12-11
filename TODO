@@ -1,0 +1,7 @@
+>>> Fix search feature for all endpoints
+>>> Add feature to upload files
+>>> Add sse route for comments
+>>> Add feature/interface for account managements
+>>> Complete implementation for activity logs
+>>> Add test cases for controllers, event bus and web services for all components
+>>> Add Job schedulers for processing notifications
