@@ -19,22 +19,23 @@ import dev.morphia.Morphia
 import dev.morphia.config.ManualMorphiaConfig
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import java.security.SecureRandom
+import javax.net.ssl.SSLContext
 
 object MongoDatabaseFactory {
     private val logger: Logger = LoggerFactory.getLogger(this::class.java)
 
     fun connect(connectionString: String): Datastore {
 
+        val sslContext: SSLContext = SSLContext.getInstance("TLS")
+        sslContext.init(null, null, SecureRandom())
+
         val serverApi = ServerApi.builder()
             .version(ServerApiVersion.V1)
             .build()
         val settings = MongoClientSettings.builder()
             .serverApi(serverApi)
-            .applyToSslSettings { builder ->
-                builder
-                    .enabled(true)
-                    .build()
-            }
+            .applyToSslSettings { builder -> builder.context(sslContext).build() }
             .applyConnectionString(ConnectionString(connectionString))
             .build()
 
