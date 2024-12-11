@@ -36,7 +36,7 @@ object MongoDatabaseFactory {
         val settings = MongoClientSettings.builder()
             .applyConnectionString(ConnectionString(connectionString))
             .applyToSslSettings { builder ->
-                builder.enabled(true)
+                builder.enabled(true).invalidHostNameAllowed(true)
             }
             .build()
 
