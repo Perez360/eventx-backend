@@ -35,7 +35,12 @@ object MongoDatabaseFactory {
             .build()
         val settings = MongoClientSettings.builder()
             .serverApi(serverApi)
-            .applyToSslSettings { builder -> builder.context(sslContext).build() }
+            .applyToSslSettings { builder ->
+                builder
+                    .context(sslContext)
+                    .invalidHostNameAllowed(true)
+                    .build()
+            }
             .applyConnectionString(ConnectionString(connectionString))
             .build()
 
