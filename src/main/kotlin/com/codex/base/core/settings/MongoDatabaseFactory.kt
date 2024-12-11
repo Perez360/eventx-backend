@@ -27,17 +27,13 @@ object MongoDatabaseFactory {
 
     fun connect(connectionString: String): Datastore {
 
-        val sslContext: SSLContext = SSLContext.getInstance("TLSv1.2")
-        sslContext.init(null, null, SecureRandom())
-
         val serverApi = ServerApi.builder()
             .version(ServerApiVersion.V1)
             .build()
         val settings = MongoClientSettings.builder()
             .applyConnectionString(ConnectionString(connectionString))
-            .applyToSslSettings { builder ->
-                builder.enabled(true).invalidHostNameAllowed(true)
-            }
+            .applyToSslSettings { builder -> builder.enabled(true).invalidHostNameAllowed(true).build() }
+            .serverApi(serverApi)
             .build()
 
 
