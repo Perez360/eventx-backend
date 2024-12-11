@@ -8,7 +8,7 @@ import dev.morphia.annotations.Version
 import java.time.LocalDateTime
 
 
-@Entity
+@Entity("menus")
 @EntityListeners(MenuEntityListener::class)
 data class Menu(
     @Id var id: String? = null,

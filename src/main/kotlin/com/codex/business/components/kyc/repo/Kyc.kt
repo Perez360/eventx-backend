@@ -6,7 +6,7 @@ import dev.morphia.utils.IndexType
 import java.time.LocalDate
 import java.time.LocalDateTime
 
-@Entity
+@Entity("kycs")
 @Indexes(
     Index(
         fields = [

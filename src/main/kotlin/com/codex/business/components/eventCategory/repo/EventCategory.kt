@@ -6,7 +6,7 @@ import dev.morphia.utils.IndexType
 import java.time.LocalDateTime
 
 
-@Entity
+@Entity("categories")
 @Indexes(
     Index(
         fields = [

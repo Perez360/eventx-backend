@@ -9,7 +9,7 @@ import dev.morphia.utils.IndexType
 import java.time.LocalDateTime
 
 
-@Entity
+@Entity("events")
 @Indexes(
     Index(
         fields = [

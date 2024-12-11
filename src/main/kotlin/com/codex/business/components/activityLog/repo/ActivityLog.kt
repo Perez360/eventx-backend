@@ -6,7 +6,7 @@ import dev.morphia.annotations.Id
 import dev.morphia.annotations.Version
 import java.time.LocalDateTime
 
-@Entity
+@Entity("activity_logs")
 @EntityListeners(ActivityLogEntityListener::class)
 data class ActivityLog(
     @Id

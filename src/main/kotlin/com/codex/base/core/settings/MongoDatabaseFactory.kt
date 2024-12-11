@@ -11,6 +11,8 @@ import com.codex.business.components.user.repo.User
 import com.codex.business.components.userProfile.repo.UserProfile
 import com.mongodb.ConnectionString
 import com.mongodb.MongoClientSettings
+import com.mongodb.ServerApi
+import com.mongodb.ServerApiVersion
 import com.mongodb.client.MongoClients
 import dev.morphia.Datastore
 import dev.morphia.Morphia
@@ -23,7 +25,16 @@ object MongoDatabaseFactory {
 
     fun connect(connectionString: String): Datastore {
 
+        val serverApi = ServerApi.builder()
+            .version(ServerApiVersion.V1)
+            .build()
         val settings = MongoClientSettings.builder()
+            .serverApi(serverApi)
+            .applyToSslSettings { builder ->
+                builder
+                    .enabled(true)
+                    .build()
+            }
             .applyConnectionString(ConnectionString(connectionString))
             .build()
 

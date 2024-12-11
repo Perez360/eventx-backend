@@ -5,7 +5,7 @@ import dev.morphia.annotations.*
 import dev.morphia.utils.IndexType
 import java.time.LocalDateTime
 
-@Entity
+@Entity("reactions")
 @Indexes(
     Index(
         fields = [
