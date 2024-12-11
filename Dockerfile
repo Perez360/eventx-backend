@@ -12,7 +12,7 @@ RUN --mount=type=cache,target=/root/.m2 mvn clean -U -B package -Dmaven.test.ski
 
 ## Stage Two: Deployment
 
-FROM openjdk
+FROM openjdk:11-jdk-slim
 
 RUN mkdir /app
 
