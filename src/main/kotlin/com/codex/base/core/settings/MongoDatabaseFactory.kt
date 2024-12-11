@@ -20,6 +20,7 @@ import dev.morphia.config.ManualMorphiaConfig
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import java.security.SecureRandom
+import java.util.concurrent.TimeUnit
 import javax.net.ssl.SSLContext
 
 object MongoDatabaseFactory {
@@ -34,14 +35,18 @@ object MongoDatabaseFactory {
             .version(ServerApiVersion.V1)
             .build()
         val settings = MongoClientSettings.builder()
-            .serverApi(serverApi)
+            .applyConnectionString(ConnectionString(connectionString))
             .applyToSslSettings { builder ->
                 builder
+                    .enabled(true)
                     .context(sslContext)
                     .invalidHostNameAllowed(true)
                     .build()
             }
-            .applyConnectionString(ConnectionString(connectionString))
+            .retryWrites(true)
+            .applyToSocketSettings{it.connectTimeout(30,TimeUnit.SECONDS).build()}
+            .applyToClusterSettings { it.serverSelectionTimeout(30,TimeUnit.SECONDS).build() }
+            .serverApi(serverApi)
             .build()
 
         val mongoClient = MongoClients.create(settings)
