@@ -9,30 +9,39 @@ import com.codex.business.components.eventTag.repo.EventTag
 import com.codex.business.components.kyc.repo.Kyc
 import com.codex.business.components.user.repo.User
 import com.codex.business.components.userProfile.repo.UserProfile
-import com.mongodb.*
+import com.mongodb.ConnectionString
+import com.mongodb.MongoClientSettings
+import com.mongodb.ServerApi
+import com.mongodb.ServerApiVersion
 import com.mongodb.client.MongoClients
+import com.mongodb.connection.TransportSettings
 import dev.morphia.Datastore
 import dev.morphia.Morphia
 import dev.morphia.config.ManualMorphiaConfig
+import io.netty.handler.ssl.SslContextBuilder
+import io.netty.handler.ssl.SslProvider
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-import java.security.SecureRandom
-import javax.net.ssl.SSLContext
 
 object MongoDatabaseFactory {
     private val logger: Logger = LoggerFactory.getLogger(this::class.java)
 
     fun connect(connectionString: String): Datastore {
 
-        val sslContext: SSLContext = SSLContext.getInstance("TLSv1.2")
-        sslContext.init(null, null, SecureRandom())
+        val sslContext = SslContextBuilder.forClient()
+            .sslProvider(SslProvider.OPENSSL)
+            .build()
 
         val serverApi = ServerApi.builder()
             .version(ServerApiVersion.V1)
             .build()
         val settings = MongoClientSettings.builder()
             .serverApi(serverApi)
-            .applyToSslSettings { builder -> builder.enabled(true).context(sslContext).build() }
+            .applyToSslSettings { builder -> builder.enabled(true).build() }
+            .transportSettings(
+                TransportSettings.nettyBuilder()
+                    .sslContext(sslContext).build()
+            )
             .applyConnectionString(ConnectionString(connectionString))
             .build()
 
