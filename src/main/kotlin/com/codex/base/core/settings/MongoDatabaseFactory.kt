@@ -24,7 +24,7 @@ object MongoDatabaseFactory {
 
     fun connect(connectionString: String): Datastore {
 
-        val sslContext: SSLContext = SSLContext.getInstance("TLS")
+        val sslContext: SSLContext = SSLContext.getInstance("TLSv1.2")
         sslContext.init(null, null, SecureRandom())
 
         val serverApi = ServerApi.builder()
@@ -32,7 +32,7 @@ object MongoDatabaseFactory {
             .build()
         val settings = MongoClientSettings.builder()
             .serverApi(serverApi)
-//            .applyToSslSettings { builder -> builder.context(sslContext).build() }
+            .applyToSslSettings { builder -> builder.enabled(true).context(sslContext).build() }
             .applyConnectionString(ConnectionString(connectionString))
             .build()
 
