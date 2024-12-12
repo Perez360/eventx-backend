@@ -71,7 +71,7 @@ object MongoDatabaseFactory {
 
     private fun getSSLContext(): SSLContext? {
         return try {
-            SSLContext.getInstance("TLS").apply {
+            SSLContext.getInstance("TLSv1.2").apply {
                 init(null, arrayOf<TrustManager>(object : TrustManager {}), null)
             }
         } catch (ex: NoSuchAlgorithmException) {
