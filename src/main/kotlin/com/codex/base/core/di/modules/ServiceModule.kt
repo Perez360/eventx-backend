@@ -11,10 +11,10 @@ import com.codex.business.components.event.repo.EventRepo
 import com.codex.business.components.event.repo.EventRepoImpl
 import com.codex.business.components.event.service.EventService
 import com.codex.business.components.event.service.EventServiceImpl
-import com.codex.business.components.eventCategory.repo.EventCategoryRepo
-import com.codex.business.components.eventCategory.repo.EventCategoryRepoImpl
-import com.codex.business.components.eventCategory.service.EventCategoryService
-import com.codex.business.components.eventCategory.service.EventCategoryServiceImpl
+import com.codex.business.components.category.repo.CategoryRepo
+import com.codex.business.components.category.repo.CategoryRepoImpl
+import com.codex.business.components.category.service.CategoryService
+import com.codex.business.components.category.service.CategoryServiceImpl
 import com.codex.business.components.file.repo.FileRepo
 import com.codex.business.components.file.repo.FileRepoImpl
 import com.codex.business.components.file.service.FileService
@@ -52,8 +52,8 @@ val SERVICE_MODULE = module {
     single<EventRepo> { EventRepoImpl() }
     single<EventService> { EventServiceImpl() }
 
-    single<EventCategoryRepo> { EventCategoryRepoImpl() }
-    single<EventCategoryService> { EventCategoryServiceImpl() }
+    single<CategoryRepo> { CategoryRepoImpl() }
+    single<CategoryService> { CategoryServiceImpl() }
 
     single<CommentRepo> { CommentRepoImpl() }
     single<CommentService> { CommentServiceImpl() }

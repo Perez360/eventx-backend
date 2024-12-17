@@ -1,4 +1,4 @@
-package com.codex.business.components.eventCategory.repo
+package com.codex.business.components.category.repo
 
 import com.codex.business.common.enums.Status
 import dev.morphia.annotations.*
@@ -18,8 +18,8 @@ import java.time.LocalDateTime
         ], options = IndexOptions(background = true)
     )
 )
-@EntityListeners(EventCategoryEntityListener::class)
-data class EventCategory(
+@EntityListeners(CategoryEntityListener::class)
+data class Category(
     @Id
     var id: String? = null,
     var name: String? = null,

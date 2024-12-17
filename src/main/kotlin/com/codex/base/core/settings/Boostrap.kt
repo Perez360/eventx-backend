@@ -4,7 +4,7 @@ import com.codex.base.core.di.DependencyInjection
 import com.codex.base.shared.Texts
 import com.codex.business.components.comment.boundary.eventbus.CommentEBVerticle
 import com.codex.business.components.event.boundary.eventbus.EventEBVerticle
-import com.codex.business.components.eventCategory.boundary.eventbus.EventCategoryEBVerticle
+import com.codex.business.components.category.boundary.eventbus.CategoryEBVerticle
 import com.codex.business.components.file.boundary.eventbus.FileEBVerticle
 import com.codex.business.components.kyc.boundary.eventbus.KycEBVerticle
 import com.codex.business.components.user.boundary.eventbus.UserEBVerticle
@@ -48,7 +48,7 @@ abstract class Boostrap : AbstractVerticle() {
                         .setWorker(Texts.isWorkerService)
                 ),
                 deployVerticle(
-                    EventCategoryEBVerticle::class.java, DeploymentOptions()
+                    CategoryEBVerticle::class.java, DeploymentOptions()
                         .setInstances(Texts.numberOfServiceInstances)
                         .setWorker(Texts.isWorkerService)
                 ),

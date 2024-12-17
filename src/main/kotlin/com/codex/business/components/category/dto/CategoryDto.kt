@@ -1,11 +1,11 @@
-package com.codex.business.components.eventCategory.dto
+package com.codex.business.components.category.dto
 
 import com.codex.business.common.enums.Status
 import io.vertx.core.json.JsonObject
 import java.time.LocalDateTime
 
 
-data class EventCategoryDto(
+data class CategoryDto(
     var id: String? = null,
     var name: String? = null,
     var description: String? = null,

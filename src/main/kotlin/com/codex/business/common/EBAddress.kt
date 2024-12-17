@@ -8,7 +8,7 @@ object EBAddress {
     const val MEDIA = "app.media.service"
     const val DOCUMENT = "app.document.service"
     const val EVENT = "app.event.service"
-    const val EVENT_CATEGORY = "app.event-category.service"
+    const val CATEGORY = "app.event-category.service"
     const val FILE = "app.file.service"
 
     const val WEB_CLIENT = "app.webclient.service"

@@ -3,7 +3,7 @@ package com.codex.business.components.eventTag.spec
 
 import com.codex.base.shared.Spec
 import com.codex.business.common.enums.Status
-import com.codex.business.components.eventCategory.spec.EventCategorySpec
+import com.codex.business.components.category.spec.CategorySpec
 import com.codex.business.components.user.repo.User
 import dev.morphia.query.filters.Filter
 import dev.morphia.query.filters.Filters
@@ -52,7 +52,7 @@ data class EventTagSpec(
             val startDate: LocalDateTime? by map
             val endDate: LocalDateTime? by map
 
-            return EventCategorySpec(
+            return CategorySpec(
                 name,
                 description,
                 status,

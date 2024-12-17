@@ -1,16 +1,14 @@
 package com.codex.business.components.event.boundary.eventbus
 
-import com.codex.base.CODE_SUCCESS
 import com.codex.base.core.settings.Configuration
 import com.codex.base.core.settings.DatabindCodecUtils
 import com.codex.base.shared.AppResponse
 import com.codex.base.shared.PagedContent
-import com.codex.base.utils.wrapSuccessInResponse
+import com.codex.base.shared.Texts.CODE_SUCCESS
 import com.codex.business.base.core.settings.MockTestBase
 import com.codex.business.common.EBAction
 import com.codex.business.common.EBAddress
-import com.codex.business.components.event.controller.EventController
-import com.codex.business.components.eventReaction.dto.EventDto
+import com.codex.business.components.event.dto.EventDto
 import com.codex.business.components.event.spec.EventSpec
 import com.codex.business.generator
 import com.codex.business.mockedAddEventDTO

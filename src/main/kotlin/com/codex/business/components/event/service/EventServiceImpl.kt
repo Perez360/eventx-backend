@@ -11,8 +11,8 @@ import com.codex.business.components.event.enums.EventStatus
 import com.codex.business.components.event.repo.Event
 import com.codex.business.components.event.repo.EventRepo
 import com.codex.business.components.event.spec.EventSpec
-import com.codex.business.components.eventCategory.repo.EventCategory
-import com.codex.business.components.eventCategory.repo.EventCategoryRepo
+import com.codex.business.components.category.repo.Category
+import com.codex.business.components.category.repo.CategoryRepo
 import com.codex.business.components.eventTag.repo.EventTag
 import com.codex.business.components.eventTag.repo.EventTagRepo
 import org.koin.core.component.KoinComponent
@@ -22,7 +22,7 @@ import java.time.LocalDateTime
 
 class EventServiceImpl : EventService, KoinComponent {
     private val tagRepo: EventTagRepo by inject()
-    private val categoryRepo: EventCategoryRepo by inject()
+    private val categoryRepo: CategoryRepo by inject()
     private val eventRepo: EventRepo by inject()
     private val logger = LoggerFactory.getLogger(this::class.java)
 
@@ -112,7 +112,7 @@ class EventServiceImpl : EventService, KoinComponent {
         return AppResponse.Success("Event deleted successfully", Mapper.convert(deletedEvent))
     }
 
-    private fun fetchCategories(categoryId: String): EventCategory =
+    private fun fetchCategories(categoryId: String): Category =
         categoryRepo.findById(categoryId) ?: throw ServiceException("No event category found with id: $categoryId")
 
     private fun fetchTags(tagId: String): EventTag =

@@ -4,7 +4,7 @@ import com.codex.base.shared.Texts
 import com.codex.business.components.activityLog.repo.ActivityLog
 import com.codex.business.components.comment.repo.Comment
 import com.codex.business.components.event.repo.Event
-import com.codex.business.components.eventCategory.repo.EventCategory
+import com.codex.business.components.category.repo.Category
 import com.codex.business.components.eventTag.repo.EventTag
 import com.codex.business.components.kyc.repo.Kyc
 import com.codex.business.components.user.repo.User
@@ -44,7 +44,7 @@ object MongoDatabaseFactory {
             Comment::class.java.packageName,
             Event::class.java.packageName,
             EventTag::class.java.packageName,
-            EventCategory::class.java.packageName,
+            Category::class.java.packageName,
             ActivityLog::class.java.packageName,
         )
         val config = ManualMorphiaConfig.configure()

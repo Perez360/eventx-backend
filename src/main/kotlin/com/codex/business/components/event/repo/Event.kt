@@ -2,7 +2,7 @@ package com.codex.business.components.event.repo
 
 import com.codex.business.components.comment.repo.Comment
 import com.codex.business.components.event.enums.EventStatus
-import com.codex.business.components.eventCategory.repo.EventCategory
+import com.codex.business.components.category.repo.Category
 import com.codex.business.components.eventTag.repo.EventTag
 import dev.morphia.annotations.*
 import dev.morphia.utils.IndexType
@@ -39,7 +39,7 @@ data class Event(
     @Reference(idOnly = true, ignoreMissing = true)
     val comments: MutableSet<Comment>? = mutableSetOf(),
     @Reference(idOnly = true, ignoreMissing = true)
-    var categories: MutableSet<EventCategory>? = mutableSetOf(),
+    var categories: MutableSet<Category>? = mutableSetOf(),
     @Reference(idOnly = true, ignoreMissing = true)
     var tags: MutableSet<EventTag>? = mutableSetOf(),
     var startDate: LocalDateTime? = null,

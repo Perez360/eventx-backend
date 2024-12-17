@@ -2,7 +2,7 @@ package com.codex.business.components.event.dto
 
 import com.codex.business.components.comment.dto.CommentDto
 import com.codex.business.components.event.enums.EventStatus
-import com.codex.business.components.eventCategory.dto.EventCategoryDto
+import com.codex.business.components.category.dto.CategoryDto
 import com.codex.business.components.eventTag.dto.EventTagDto
 import java.time.LocalDateTime
 
@@ -20,7 +20,7 @@ data class EventDto(
     var endDate: LocalDateTime? = null,
     var comments: MutableSet<CommentDto>? = null,
     var tags: MutableSet<EventTagDto>? = null,
-    var categories: MutableSet<EventCategoryDto>? = null,
+    var categories: MutableSet<CategoryDto>? = null,
     val createdAt: LocalDateTime? = null,
     var modifiedAt: LocalDateTime? = null,
     val version: Long? = null

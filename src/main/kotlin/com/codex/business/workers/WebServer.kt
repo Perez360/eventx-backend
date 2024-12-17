@@ -6,7 +6,7 @@ import com.codex.base.shared.Texts
 import com.codex.business.common.Routes
 import com.codex.business.components.comment.boundary.web.CommentRouter
 import com.codex.business.components.event.boundary.http.EventRouter
-import com.codex.business.components.eventCategory.boundary.web.EventCategoryRouter
+import com.codex.business.components.category.boundary.web.CategoryRouter
 import com.codex.business.components.file.boundary.web.FileRouter
 import com.codex.business.components.kyc.boundary.web.KycRouter
 import com.codex.business.components.menu.boundary.http.MenuRouter
@@ -60,7 +60,7 @@ class WebServer : AbstractVerticle() {
         router.route(Routes.Kyc.path).subRouter(KycRouter(vertx))
         router.route(Routes.Comment.path).subRouter(CommentRouter(vertx))
         router.route(Routes.Event.path).subRouter(EventRouter(vertx))
-        router.route(Routes.EventCategory.path).subRouter(EventCategoryRouter(vertx))
+        router.route(Routes.Category.path).subRouter(CategoryRouter(vertx))
         router.route(Routes.File.path).subRouter(FileRouter(vertx))
         router.route(Routes.Menu.path).subRouter(MenuRouter(vertx))
         return router

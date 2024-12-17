@@ -1,14 +1,14 @@
-package com.codex.business.components.eventCategory.boundary.eventbus
+package com.codex.business.components.category.boundary.eventbus
 
 import com.codex.base.exceptions.ServiceException
 import com.codex.base.shared.AppResponse
 import com.codex.base.utils.toJson
 import com.codex.business.common.EBAction
 import com.codex.business.common.EBAddress
-import com.codex.business.components.eventCategory.dto.AddEventCategoryDto
-import com.codex.business.components.eventCategory.dto.UpdateEventCategoryDto
-import com.codex.business.components.eventCategory.service.EventCategoryService
-import com.codex.business.components.eventCategory.spec.EventCategorySpec
+import com.codex.business.components.category.dto.AddCategoryDto
+import com.codex.business.components.category.dto.UpdateCategoryDto
+import com.codex.business.components.category.service.CategoryService
+import com.codex.business.components.category.spec.CategorySpec
 import io.vertx.core.AbstractVerticle
 import io.vertx.core.eventbus.Message
 import io.vertx.core.json.DecodeException
@@ -19,15 +19,15 @@ import org.koin.core.component.inject
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
-class EventCategoryEBVerticle : AbstractVerticle(), KoinComponent {
-    private val controller: EventCategoryService by inject()
+class CategoryEBVerticle : AbstractVerticle(), KoinComponent {
+    private val controller: CategoryService by inject()
 
     private val logger: Logger = LoggerFactory.getLogger(this::class.java)
 
 
     override fun start() {
-        logger.info("Started EB consumer verticle for {} service", EBAddress.EVENT_CATEGORY)
-        vertx.eventBus().consumer(EBAddress.EVENT_CATEGORY, ::onMessage)
+        logger.info("Started EB consumer verticle for {} service", EBAddress.CATEGORY)
+        vertx.eventBus().consumer(EBAddress.CATEGORY, ::onMessage)
     }
 
     private fun onMessage(message: Message<JsonObject>) {
@@ -40,35 +40,35 @@ class EventCategoryEBVerticle : AbstractVerticle(), KoinComponent {
         val apiAppResponse = try {
             when (action) {
 
-                EBAction.EventCategoryEBAction.PING -> controller.ping()
+                EBAction.CategoryEBAction.PING -> controller.ping()
 
-                EBAction.EventCategoryEBAction.CREATE -> {
-                    val dto = Json.decodeValue(body.encode(), AddEventCategoryDto::class.java)
+                EBAction.CategoryEBAction.CREATE -> {
+                    val dto = Json.decodeValue(body.encode(), AddCategoryDto::class.java)
                     controller.create(dto)
                 }
 
-                EBAction.EventCategoryEBAction.UPDATE -> {
-                    val dto = Json.decodeValue(body.encode(), UpdateEventCategoryDto::class.java)
+                EBAction.CategoryEBAction.UPDATE -> {
+                    val dto = Json.decodeValue(body.encode(), UpdateCategoryDto::class.java)
                     controller.update(dto)
                 }
 
-                EBAction.EventCategoryEBAction.GET_BY_ID -> {
+                EBAction.CategoryEBAction.GET_BY_ID -> {
                     val id = body.getString("id")
                     controller.findById(id)
                 }
 
-                EBAction.EventCategoryEBAction.LIST -> {
+                EBAction.CategoryEBAction.LIST -> {
                     val page = body.getInteger("page", 1)
                     val size = body.getInteger("size", 50)
                     controller.list(page, size)
                 }
 
-                EBAction.EventCategoryEBAction.SEARCH -> {
-                    val spec = body.mapTo(EventCategorySpec::class.java)
+                EBAction.CategoryEBAction.SEARCH -> {
+                    val spec = body.mapTo(CategorySpec::class.java)
                     controller.search(spec)
                 }
 
-                EBAction.EventCategoryEBAction.DELETE_BY_ID -> {
+                EBAction.CategoryEBAction.DELETE_BY_ID -> {
                     val id = body.getString("id")
                     controller.deleteById(id)
                 }

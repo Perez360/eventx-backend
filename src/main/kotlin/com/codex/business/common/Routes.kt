@@ -10,7 +10,7 @@ sealed class Routes(val path: String) {
     data object Comment : Routes("$BASE/comment/*")
     data object Kyc : Routes("$BASE/kyc/*")
     data object Event : Routes("$BASE/event/*")
-    data object EventCategory : Routes("$BASE/event-category/*")
+    data object Category : Routes("$BASE/category/*")
     data object Media : Routes("$BASE/media/*")
     data object Document : Routes("$BASE/document/*")
     data object File : Routes("$BASE/file/*")

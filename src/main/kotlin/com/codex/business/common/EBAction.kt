@@ -17,7 +17,7 @@ sealed class EBAction {
     data object MediaEBAction : EBAction()
     data object DocumentEBAction : EBAction()
     data object EventEBAction : EBAction()
-    data object EventCategoryEBAction : EBAction()
+    data object CategoryEBAction : EBAction()
     data object FileEBAction : EBAction() {
         const val UPLOAD: String = "UPLOAD"
         const val DOWNLOAD: String = "DOWNLOAD"

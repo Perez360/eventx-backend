@@ -1,4 +1,4 @@
-package com.codex.business.components.eventCategory.spec
+package com.codex.business.components.category.spec
 
 
 import com.codex.base.shared.Spec
@@ -8,7 +8,7 @@ import dev.morphia.query.filters.Filter
 import dev.morphia.query.filters.Filters
 import java.time.LocalDateTime
 
-data class EventCategorySpec(
+data class CategorySpec(
     var name: String? = null,
     var description: String? = null,
     var status: Status? = null,
@@ -51,7 +51,7 @@ data class EventCategorySpec(
             val startDate: LocalDateTime? by map
             val endDate: LocalDateTime? by map
 
-            return EventCategorySpec(
+            return CategorySpec(
                 name,
                 description,
                 status,
@@ -64,7 +64,7 @@ data class EventCategorySpec(
     }
 
     override fun toString(): String {
-        return "EventCategorySpec(" +
+        return "CategorySpec(" +
                 "name=$name, " +
                 "description=$description, " +
                 "status=$status, " +
